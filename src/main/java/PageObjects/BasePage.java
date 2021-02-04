@@ -1,7 +1,7 @@
 package PageObjects;
 
 import Utills.AppConfig;
-import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
     protected WebDriver driver;
@@ -32,6 +33,10 @@ public class BasePage {
 
     protected WebElement findElement(WebElement element){
         return element;
+    }
+
+    protected List<WebElement> findAll(By checkbox){
+        return driver.findElements(checkbox);
     }
 
 

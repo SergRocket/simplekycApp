@@ -1,4 +1,10 @@
 package TestsCases;
 
-public class WorklistFilterbyType {
+import org.testng.annotations.Test;
+
+public class WorklistFilterbyType extends BaseTest {
+    @Test
+    public void filterByType(){
+
+    }
 }

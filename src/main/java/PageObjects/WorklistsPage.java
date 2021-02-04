@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class WorklistsPage extends BasePage {
     @FindBy(className = "navbar-brand")
     private WebElement brandImage;
@@ -54,7 +52,16 @@ public class WorklistsPage extends BasePage {
     private WebElement removeSearchQuery;
     @FindBy(xpath = "//*[@id=\"thead-filter\"]/th[5]/span/div/ul")
     private WebElement filterContainer;
-
+    @FindBy(xpath = "//span[@title='View More Options']")
+    private WebElement moreButton;
+    @FindBy(id = "Notes-S-BFUQxAzM-S")
+    private WebElement viewNotesButton;
+    @FindBy(id = "previous-usr-page")
+    private WebElement paginationLeftClick;
+    @FindBy(id = "next-usr-page")
+    private WebElement paginationRightClick;
+    @FindBy(id = "current-usr-page")
+    private WebElement currentPaginationPage;
     public WorklistsPage(WebDriver driver) {
         super(driver);
     }
@@ -178,7 +185,23 @@ public class WorklistsPage extends BasePage {
         waitForElementToBeVisible(filterContainer);
     }
     public void clickOnCheckboxes(){
-        List<WebElement> checkboxes = findAll()
+        //List<WebElement> checkboxes = findAll();
     }
+
+    public AlertPage openNotes(){
+        waitForElementToBeVisible(moreButton);
+        waitForElementToBeVisible(viewNotesButton);
+        moreButton.click();
+        viewNotesButton.click();
+        return new AlertPage(driver);
+    }
+
+    public void paginationClick(){
+        waitForElementToBeVisible(currentPaginationPage);
+        waitForElementToBeVisible(paginationLeftClick);
+        waitForElementToBeVisible(paginationRightClick);
+        paginationLeftClick.click();
+        paginationRightClick.click();
+        }
 }
 

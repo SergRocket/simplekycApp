@@ -1,9 +1,13 @@
 package PageObjects;
 
 import Utills.AppConfig;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.List;
 
 public class WorklistsPage extends BasePage {
     @FindBy(className = "navbar-brand")
@@ -54,7 +58,7 @@ public class WorklistsPage extends BasePage {
     private WebElement filterContainer;
     @FindBy(xpath = "//span[@title='View More Options']")
     private WebElement moreButton;
-    @FindBy(id = "Notes-S-BFUQxAzM-S")
+    @FindBy(id = "application-tools-popover-S-BFUQxAzM-S")
     private WebElement viewNotesButton;
     @FindBy(id = "previous-usr-page")
     private WebElement paginationLeftClick;
@@ -62,6 +66,29 @@ public class WorklistsPage extends BasePage {
     private WebElement paginationRightClick;
     @FindBy(id = "current-usr-page")
     private WebElement currentPaginationPage;
+    @FindBy(xpath = "//lable[@class='checkbox']")
+    private WebElement allcheckboxes;
+    @FindBy(id = "Tree-S-BFUQxAzM-S")
+    private WebElement tree;
+    @FindBy(xpath = "//*[@id=\"Report-S-BFUQxAzM-S\"]")
+    private WebElement downloadReportButton;
+    @FindBy(xpath = "//*[@id=\"ReportsList-S-BFUQxAzM-S\"]")
+    private WebElement onlineReport;
+    @FindBy(id = "popover40257")
+    private WebElement reportsWindow;
+    @FindBy(id = "documents-list")
+    private WebElement documentList;
+    @FindBy(xpath = "//*[@id=\"documents-list\"]/tr[2]/td[3]/a")
+    private WebElement downloadSpecificReport;
+    @FindBy(xpath = "//*[@id=\"ReportsList-S-BFUQxAzM-S\"]")
+    private WebElement reportsButton;
+    @FindBy(id = "select-number-lines")
+    private WebElement companyPerPage;
+    @FindBy(xpath = "//tr[@role='row']")
+    private WebElement companyRowInfo;
+    @FindBy(xpath = "//*[@id=\"ET-S-BFUQ4kjM-S\"]")
+    private WebElement valueForFilteringinRow;
+
     public WorklistsPage(WebDriver driver) {
         super(driver);
     }
@@ -184,13 +211,33 @@ public class WorklistsPage extends BasePage {
         filterButton.click();
         waitForElementToBeVisible(filterContainer);
     }
-    public void clickOnCheckboxes(){
-        //List<WebElement> checkboxes = findAll();
+
+    public String selectAssociationFilter(){
+        waitForElementToBeVisible(associationFilter);
+        associationFilter.click();
+        return associationFilter.getText();
+    }
+
+    public void disselectAssociationFilter(){
+        waitForElementToBeVisible(associationFilter);
+        associationFilter.click();
+    }
+
+    public String selectCompanyFilter(){
+        waitForElementToBeVisible(companyFilter);
+        companyFilter.click();
+        return companyFilter.getText();
+    }
+
+    public void disselectCompanyFilter(){
+        waitForElementToBeVisible(associationFilter);
+        associationFilter.click();
     }
 
     public AlertPage openNotes(){
         waitForElementToBeVisible(moreButton);
         waitForElementToBeVisible(viewNotesButton);
+        waitForElementToBeVisible(paginationLeftClick);
         moreButton.click();
         viewNotesButton.click();
         return new AlertPage(driver);
@@ -203,5 +250,41 @@ public class WorklistsPage extends BasePage {
         paginationLeftClick.click();
         paginationRightClick.click();
         }
+
+     public ViewTreePage clickOnTreeButton(){
+        waitForElementToBeVisible(tree);
+        tree.click();
+        return new ViewTreePage(driver);
+     }
+
+     public OnlineReportPage reportsOpening(){
+       waitForElementToBeVisible(reportsButton);
+       reportsButton.click();
+       return new OnlineReportPage(driver);
+     }
+
+     public void numberperPage(int a){
+         WebElement valuePerPageElement = find(companyPerPage);
+         Select value = new Select(valuePerPageElement);
+         value.selectByIndex(2);
+     }
+
+     public String getSelectedValueinPerPage(){
+         WebElement valuePerPageElement = find(companyPerPage);
+         Select value = new Select(valuePerPageElement);
+         String selectedValue = value.getFirstSelectedOption().getText();
+         return selectedValue;
+     }
+
+     public String getcompanyPerPageQuantity(){
+        List<WebElement> companyRows = driver.findElements(By.xpath("//tr[@role='row']"));
+        int rowCounter = companyRows.size();
+        String rows = String.valueOf(rowCounter);
+        return rows;
+       }
 }
+
+
+
+
 

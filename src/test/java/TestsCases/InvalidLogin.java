@@ -10,7 +10,6 @@ public class InvalidLogin extends BaseTest {
     @Test
     public void negativeLogInTest(){
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.openFirstUrl();
         loginPage.login(AppConfig.invalidPassword, AppConfig.invalidUsername);
         String errorMessage = loginPage.checkErrorMessage();
         Assert.assertTrue(errorMessage.contains(AppConfig.errorMessage));

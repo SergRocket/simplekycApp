@@ -11,9 +11,8 @@ public class LoginOut extends BaseTest {
     @Test
     public void loginOut(){
         LoginPage loginPage = new  LoginPage(driver);
-        loginPage.openFirstUrl();
-        WorklistsPage reportsPage = loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
-        reportsPage.logout();
+        WorklistsPage worklistsPage = loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        worklistsPage.logout();
         Assert.assertTrue(loginPage.afterLoginPageisOpen());
         }
 }

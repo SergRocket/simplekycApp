@@ -1,21 +1,20 @@
 package TestsCases;
 
+import PageObjects.AlertPage;
 import PageObjects.LoginPage;
-import PageObjects.ViewTreePage;
 import PageObjects.WorklistsPage;
 import Utills.AppConfig;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class ViewTree extends BaseTest {
+public class ViewNotes extends BaseTest {
+
     @Test
-    public void viewTree(){
+    public void viewNotes(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
         WorklistsPage worklistsPage = new WorklistsPage(driver);
-        ViewTreePage viewTreePage = worklistsPage.clickOnTreeButton();
-        Assert.assertTrue(viewTreePage.isControlPanelTreeView());
-        Assert.assertTrue(viewTreePage.ismainTreeVisible());
-        Assert.assertTrue(viewTreePage.isViewTreeNavBarVisible());
-        }
+        AlertPage alertPage = worklistsPage.openNotes();
+        Assert.assertTrue(alertPage.checkVisibilityofElements());
+      }
 }

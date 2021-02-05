@@ -17,6 +17,7 @@ public class AppConfig {
         public static final String ACNvalidsearch3 = "627582209";
         public static final String ExpectedIndividualName = "ALISON JANE MORGAN";
         public static final String filePath = "C:\\Users\\schimbay\\Downloads";
+        public static final String fiilePathHomePC = "C:\\Users\\Serg\\Downloads";
 
         // Project configuration
         public static final int TIMEOUT = 10;

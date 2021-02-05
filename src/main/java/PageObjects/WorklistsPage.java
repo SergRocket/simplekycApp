@@ -1,13 +1,18 @@
 package PageObjects;
 
 import Utills.AppConfig;
+import java.nio.file.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class WorklistsPage extends BasePage {
     @FindBy(className = "navbar-brand")
@@ -43,7 +48,7 @@ public class WorklistsPage extends BasePage {
     @FindBy(xpath = "//input[@value='foreignerentity']")  //*[@id="filter-enable"]/span[1]
     private WebElement foreignerFilter;
     @FindBy(xpath = "//input[@value='government body']")
-    private WebElement govermentFilter;   //*[@id="filter-keyword"]/button
+    private WebElement govermentFilter;
     @FindBy(xpath = "//input[@value='partnership']")
     private WebElement partnershipFilter;
     @FindBy(xpath = "//input[@value='sole trader']")
@@ -70,17 +75,17 @@ public class WorklistsPage extends BasePage {
     private WebElement allcheckboxes;
     @FindBy(id = "Tree-S-BFUQxAzM-S")
     private WebElement tree;
-    @FindBy(xpath = "//*[@id=\"Report-S-BFUQxAzM-S\"]")
-    private WebElement downloadReportButton;
+    @FindBy(xpath = "//*[@id='reports-popover']/div[2]/button")
+    private WebElement downloadALLReportsButton;
     @FindBy(xpath = "//*[@id=\"ReportsList-S-BFUQxAzM-S\"]")
     private WebElement onlineReport;
     @FindBy(id = "popover40257")
     private WebElement reportsWindow;
     @FindBy(id = "documents-list")
     private WebElement documentList;
-    @FindBy(xpath = "//*[@id=\"documents-list\"]/tr[2]/td[3]/a")
+    @FindBy(xpath = "//*[@id='documents-list']/tr[1]/td[3]/a")
     private WebElement downloadSpecificReport;
-    @FindBy(xpath = "//*[@id=\"ReportsList-S-BFUQxAzM-S\"]")
+    @FindBy(xpath = "//*[@id='ReportsList-S-BFUQxAzM-S']")
     private WebElement reportsButton;
     @FindBy(id = "select-number-lines")
     private WebElement companyPerPage;
@@ -201,7 +206,7 @@ public class WorklistsPage extends BasePage {
         waitForElementToBeVisible(spreadsheetBody);
         waitForElementToBeVisible(spreadsheetWithCompaneys);
         String vaueABN = find(johnsonvalue).getText();
-        return vaueABN;  //*[@id="thead-filter"]/th[5]/span/div/ul
+        return vaueABN;
     }
 
     public void enebleFilters(){
@@ -282,6 +287,14 @@ public class WorklistsPage extends BasePage {
         String rows = String.valueOf(rowCounter);
         return rows;
        }
+
+       public void downLoadReport(){
+        waitForElementToBeVisible(reportsButton);
+        reportsButton.click();
+        waitForElementToBeVisible(reportsWindow);
+        waitForElementToBeVisible(downloadSpecificReport);
+        downloadSpecificReport.click();
+        }
 }
 
 

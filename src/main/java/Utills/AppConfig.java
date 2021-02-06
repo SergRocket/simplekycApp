@@ -18,6 +18,9 @@ public class AppConfig {
         public static final String ExpectedIndividualName = "ALISON JANE MORGAN";
         public static final String filePath = "C:\\Users\\schimbay\\Downloads";
         public static final String fiilePathHomePC = "C:\\Users\\Serg\\Downloads";
+        public static final String urlToDonwloadReport = "https://basic-dev8.simplekyc.com/structure/report/download/" +
+                "L-eyJpdiI6InVOT01sVkJTbWRXYzdJUWsrSmJQMUE9PSIsInZhbHVlIjoiVTBXOTZCS21cL28rek5yUHRHR1puVUE9PSIsIm1hYyI6" +
+                "Ijc2NWFkOTk1MTBlYmRlMzI5YmQ2MjE2MmFmOWU4ZDJlZTI3Yjk4YjcyM2ZmYzdlODQ0ODRlNGYwMWNiZDY4ZDIifQ-L";
 
         // Project configuration
         public static final int TIMEOUT = 10;

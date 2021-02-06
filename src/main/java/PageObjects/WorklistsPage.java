@@ -1,18 +1,13 @@
 package PageObjects;
 
 import Utills.AppConfig;
-import java.nio.file.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class WorklistsPage extends BasePage {
     @FindBy(className = "navbar-brand")
@@ -79,11 +74,11 @@ public class WorklistsPage extends BasePage {
     private WebElement downloadALLReportsButton;
     @FindBy(xpath = "//*[@id=\"ReportsList-S-BFUQxAzM-S\"]")
     private WebElement onlineReport;
-    @FindBy(id = "popover40257")
+    @FindBy(css = "#popover199876")
     private WebElement reportsWindow;
     @FindBy(id = "documents-list")
     private WebElement documentList;
-    @FindBy(xpath = "//*[@id='documents-list']/tr[1]/td[3]/a")
+    @FindBy(css = "#documents-list > tr:nth-child(1) > td:nth-child(3) > a")
     private WebElement downloadSpecificReport;
     @FindBy(xpath = "//*[@id='ReportsList-S-BFUQxAzM-S']")
     private WebElement reportsButton;
@@ -291,7 +286,7 @@ public class WorklistsPage extends BasePage {
        public void downLoadReport(){
         waitForElementToBeVisible(reportsButton);
         reportsButton.click();
-        waitForElementToBeVisible(reportsWindow);
+        //waitForElementToBeVisible(reportsWindow);
         waitForElementToBeVisible(downloadSpecificReport);
         downloadSpecificReport.click();
         }

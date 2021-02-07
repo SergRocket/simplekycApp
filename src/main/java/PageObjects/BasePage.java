@@ -39,6 +39,14 @@ public class BasePage {
         return driver.findElements(checkbox);
     }
 
+    protected void selectCompanyFilters(WebElement element){
+        waitForElementToBeVisible(element);
+        element.click();
+    }
+    protected void disselectCompanyFilters(WebElement element){
+        waitForElementToBeVisible(element);
+        element.click();
+    }
 
 
 }

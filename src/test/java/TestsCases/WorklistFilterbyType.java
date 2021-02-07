@@ -12,15 +12,41 @@ public class WorklistFilterbyType extends BaseTest {
         loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
         WorklistsPage worklistsPage = new WorklistsPage(driver);
         worklistsPage.enebleFilters();
-        worklistsPage.selectAssociationFilter();
-        String selectedValue = worklistsPage.selectAssociationFilter();
-        System.out.print("The first selected value is " + selectedValue);
+        worklistsPage.activateAssociationFilter();
+        String selecteAssosiationdValue = worklistsPage.activateAssociationFilter();
+        System.out.print("The first selected value is " + selecteAssosiationdValue);
         worklistsPage.disselectAssociationFilter();
-        worklistsPage.selectCompanyFilter();
-        String selectedValue2 = worklistsPage.selectCompanyFilter();
-        System.out.print("The second selected value is " + selectedValue2);
-        worklistsPage.disselectCompanyFilter();
 
-        //System.out.print(worklistsPage.get);
-    }
+        worklistsPage.activateCopmFilter();
+        String selectedCompanyValue = worklistsPage.activateCopmFilter();
+        System.out.println("The second selected value is " + selectedCompanyValue);
+        worklistsPage.disselectCopmFilter();
+
+        worklistsPage.activatForeinerFilter();
+        String selectedForeignCompany = worklistsPage.activatForeinerFilter();
+        System.out.println("The second selected value is " + selectedForeignCompany);
+        worklistsPage.disselectForeiFilter();
+
+        worklistsPage.disselectGovFilter();
+        String selectedGovCompany = worklistsPage.activateGovFilter();
+        System.out.println("The second selected value is " + selectedGovCompany);
+        worklistsPage.disselectGovFilter();
+
+        worklistsPage.disselectPartnerFilter();
+        String selectedPartnershipCompany = worklistsPage.activatePertnerFilter();
+        System.out.println("The second selected value is "+ selectedPartnershipCompany);
+        worklistsPage.disselectPartnerFilter();
+
+        worklistsPage.activateSoleFilter();
+        String selectedSoleTrCompany = worklistsPage.activateSoleFilter();
+        System.out.println("The second selected value is "+ selectedSoleTrCompany);
+        worklistsPage.disselectSoleFilter();
+
+        worklistsPage.activateTrustFilter();
+        String selectedTrustCompany = worklistsPage.activateTrustFilter();
+        System.out.println("The second selected value is "+ selectedTrustCompany);
+        worklistsPage.disselectTrustFilter();
+        worklistsPage.disablefilters();
+        }
+
 }

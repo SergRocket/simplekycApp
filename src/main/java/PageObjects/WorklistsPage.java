@@ -1,13 +1,23 @@
 package PageObjects;
 
 import Utills.AppConfig;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class WorklistsPage extends BasePage {
     @FindBy(className = "navbar-brand")
@@ -212,29 +222,64 @@ public class WorklistsPage extends BasePage {
         waitForElementToBeVisible(filterContainer);
     }
 
-    public String selectAssociationFilter(){
-        waitForElementToBeVisible(associationFilter);
-        associationFilter.click();
+   public String activateAssociationFilter(){
+        selectCompanyFilters(associationFilter);
+        return associationFilter.getText();
+   }
+    public void disselectAssociationFilter(){
+        disselectCompanyFilters(associationFilter);
+    }
+    public String activateCopmFilter(){
+        selectCompanyFilters(associationFilter);
         return associationFilter.getText();
     }
-
-    public void disselectAssociationFilter(){
-        waitForElementToBeVisible(associationFilter);
-        associationFilter.click();
+    public void disselectCopmFilter(){
+        disselectCompanyFilters(associationFilter);
+    }
+    public String activatForeinerFilter(){
+        selectCompanyFilters(associationFilter);
+        return associationFilter.getText();
+    }
+    public void disselectForeiFilter(){
+        disselectCompanyFilters(associationFilter);
+    }
+    public String activateGovFilter(){
+        selectCompanyFilters(associationFilter);
+        return associationFilter.getText();
+    }
+    public void disselectGovFilter(){
+        disselectCompanyFilters(associationFilter);
+    }
+    public String activatePertnerFilter(){
+        selectCompanyFilters(associationFilter);
+        return associationFilter.getText();
+    }
+    public void disselectPartnerFilter(){
+        disselectCompanyFilters(associationFilter);
+    }
+    public String activateSoleFilter(){
+        selectCompanyFilters(associationFilter);
+        return associationFilter.getText();
+    }
+    public void disselectSoleFilter(){
+        disselectCompanyFilters(associationFilter);
+    }
+    public String activateTrustFilter(){
+        selectCompanyFilters(associationFilter);
+        return associationFilter.getText();
+    }
+    public void disselectTrustFilter(){
+        disselectCompanyFilters(associationFilter);
     }
 
-    public String selectCompanyFilter(){
-        waitForElementToBeVisible(companyFilter);
-        companyFilter.click();
-        return companyFilter.getText();
+    public void disablefilters(){
+        waitForElementToBeVisible(filterButton);
+        filterButton.click();
+        waitForElementToBeVisible(disableFilters);
+        disableFilters.click();
     }
 
-    public void disselectCompanyFilter(){
-        waitForElementToBeVisible(associationFilter);
-        associationFilter.click();
-    }
-
-    public AlertPage openNotes(){
+   public AlertPage openNotes(){
         waitForElementToBeVisible(moreButton);
         waitForElementToBeVisible(viewNotesButton);
         waitForElementToBeVisible(paginationLeftClick);
@@ -290,6 +335,20 @@ public class WorklistsPage extends BasePage {
         waitForElementToBeVisible(downloadSpecificReport);
         downloadSpecificReport.click();
         }
+
+        public Integer validationForDownloadRequest() throws IOException {
+            HttpClient client = HttpClientBuilder.create().setConnectionTimeToLive(2000, TimeUnit.MILLISECONDS).build();
+            HttpResponse httpResponse = client.execute(new HttpGet(AppConfig.urlToDonwloadReport));
+            HttpEntity entity = httpResponse.getEntity();
+            String responseCode = EntityUtils.toString(entity);
+            if(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+                System.out.print(responseCode);
+            } else {
+                throw new HttpResponseException(httpResponse.getStatusLine().getStatusCode(), responseCode);
+            }
+            return HttpStatus.SC_OK;
+        }
+
 }
 
 

@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,23 +12,37 @@ public class IdReportPage extends BasePage {
     private WebElement closereportButton;
     @FindBy(xpath = "//*[@id=\"verification-screening-modal\"]")
     private WebElement idReport;
+
     public IdReportPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean idReportVisible (){
-        waitForElementToBeVisible(idReport);
-        boolean idReportisVisible = idReport.isDisplayed();
-        return idReportisVisible;
+    public boolean idReportVisible() {
+        try {
+            waitForElementToBeVisible(idReport);
+            if (idReport.isDisplayed()) {
+                System.out.print("The element is visible");
+            }
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+            return false;
+        }
+        return idReport.isDisplayed();
     }
 
-    public void closeIdReport(){
-        waitForElementToBeVisible(closereportButton);
-        closereportButton.click();
+    public void closeIdReport() {
+        elementClick(closereportButton);
     }
 
-    public String checkIndividualsName(){
-        waitForElementToBeVisible(nameOfIndividual);
+    public String checkIndividualsName() {
+        try {
+            waitForElementToBeVisible(nameOfIndividual);
+            if (nameOfIndividual.isDisplayed()) {
+                System.out.print("The element is visible");
+            }
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
         return nameOfIndividual.getText();
     }
 }

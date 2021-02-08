@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/schimbay/IdeaProjects/simplekycApp">
+        <classes>
+            <class name="TestsCases.DownloadReportAndViewReportTests">
+                <methods>
+                    <include name="DownloadReport"/>
+                    <include name="onlineReport"/>
+                </methods>
+            </class>
+            <class name="TestsCases.IDVeriffFromTreeAndViewTreeTests">
+                <methods>
+                    <include name="idVerification"/>
+                    <include name="viewTree"/>
+                </methods>
+            </class>
+            <class name="TestsCases.LoginTests">
+                <methods>
+                    <include name="validLogin"/>
+                    <include name="loginOut"/>
+                    <include name="invalidLogIn"/>
+                </methods>
+            </class>
+            <class name="TestsCases.PaginationViewAndPerPageTests">
+                <methods>
+                    <include name="paginationTest"/>
+                    <include name="viewPerPage"/>
+                </methods>
+            </class>
+            <class name="TestsCases.ViewNotesTests">
+                <methods>
+                    <include name="viewNotes"/>
+                </methods>
+            </class>
+            <class name="TestsCases.WorklistFiltersAndSerchByTests">
+                <methods>
+                    <include name="filterByType"/>
+                    <include name="searchInputABNSimpleCO"/>
+                    <include name="searchInputABNLtGame"/>
+                    <include name="searchInputJohnsonFamily"/>
+                    <include name="searchInputACNSimpleCO"/>
+                    <include name="searchInputACNLtGame"/>
+                    <include name="searchInputACNSimpleKyc"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

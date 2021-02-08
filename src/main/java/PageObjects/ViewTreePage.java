@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,27 +22,45 @@ public class ViewTreePage extends BasePage {
         super(driver);
     }
 
-    public boolean isViewTreeNavBarVisible(){
-        waitForElementToBeVisible(treeNavBar);
-        boolean navBar = treeNavBar.isDisplayed();
-        return navBar;
-    }
-    public boolean isControlPanelTreeView(){
-        waitForElementToBeVisible(controlTreePanel);
-        boolean contrPanel = controlTreePanel.isDisplayed();
-        return contrPanel;
-    }
-    public boolean ismainTreeVisible(){
-        waitForElementToBeVisible(maintree);
-        boolean mainTree = maintree.isDisplayed();
-        return mainTree;
-    }
-    public IdReportPage startIdVerif(){
-        waitForElementToBeVisible(idbutton);
-        idbutton.click();
-        waitForElementToBeVisible(runIdVerifButton);
-        runIdVerifButton.click();
-        return new IdReportPage(driver);
+    public boolean isViewTreeNavBarVisible() {
+        try {
+            waitForElementToBeVisible(treeNavBar);
+            if (treeNavBar.isDisplayed()) {
+                return true;
+            }
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return treeNavBar.isDisplayed();
     }
 
+    public boolean isControlPanelTreeView() {
+        try {
+            waitForElementToBeVisible(controlTreePanel);
+            if (controlTreePanel.isDisplayed()) {
+                return true;
+            }
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return controlTreePanel.isDisplayed();
+    }
+
+    public boolean ismainTreeVisible() {
+        try {
+            waitForElementToBeVisible(maintree);
+            if (maintree.isDisplayed()) {
+                return true;
+            }
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return maintree.isDisplayed();
+    }
+
+    public IdReportPage startIdVerif() {
+        elementClick(idbutton);
+        elementClick(runIdVerifButton);
+        return new IdReportPage(driver);
+    }
 }

@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,7 +40,7 @@ public class WorklistsPage extends BasePage {
     @FindBy(id = "Name-S-BFUQ1MTM-S")
     private WebElement johnsonvalue;
     @FindBy(css = "#filter-keyword > button")
-    private WebElement getRemoveSearchQuery ;
+    private WebElement getRemoveSearchQuery;
     @FindBy(id = "Name-S-BFUQyUjM-S")
     private WebElement polusValue;
     @FindBy(id = "filter-enable")
@@ -104,36 +105,56 @@ public class WorklistsPage extends BasePage {
     }
 
     public boolean isUrlandCompanyLogoVisible() {
+        try {
+            waitForElementToBeVisible(brandImage);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            if (brandImage.isDisplayed() && spreadsheetWithCompaneys.isDisplayed()) {
+                return true;
+            }
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+            return false;
+        }
         return brandImage.isDisplayed() && spreadsheetWithCompaneys.isDisplayed();
     }
 
     public void logout() {
-        waitForElementToBeVisible(accountMenu);
-        accountMenu.click();
-        waitForElementToBeVisible(logoutButton);
-        logoutButton.click();
+        elementClick(accountMenu);
+        elementClick(logoutButton);
     }
 
     public String getValueSimpleCo() {
-        waitForElementToBeVisible(simpleCovalue);
-        waitForElementToBeVisible(spreadsheetBody);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(simpleCovalue);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         String vaueABN = find(simpleCovalue).getText();
         return vaueABN;
     }
 
     public String getValueLtGame() {
-        waitForElementToBeVisible(ltGamevalue);
-        waitForElementToBeVisible(spreadsheetBody);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(ltGamevalue);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         String vaueABN = find(ltGamevalue).getText();
         return vaueABN;
     }
 
     public String getValueJohnson() {
-        waitForElementToBeVisible(johnsonvalue);
-        waitForElementToBeVisible(spreadsheetBody);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(johnsonvalue);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         String vaueABN = find(johnsonvalue).getText();
         return vaueABN;
     }
@@ -143,212 +164,319 @@ public class WorklistsPage extends BasePage {
     }
 
     public void searchForSimpleCO() {
-        waitForElementToBeVisible(filter);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         filter.sendKeys(AppConfig.ABNvalidsearch1);
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public void searchForLtgame() {
-        waitForElementToBeVisible(filter);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         filter.sendKeys(AppConfig.ABNvalidsearch2);
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public void searchForJohnsonFamily() {
-        waitForElementToBeVisible(filter);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         filter.sendKeys(AppConfig.ABNvalidsearch3);
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public void clearSearch() {
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
-        removeSearchQuery.click();
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        elementClick(removeSearchQuery);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public void searchForSimpleCoACN() {
-        waitForElementToBeVisible(filter);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         filter.sendKeys(AppConfig.ACNvalidsearch1);
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public void searchForLtGameACN() {
-        waitForElementToBeVisible(filter);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         filter.sendKeys(AppConfig.ACNvalidsearch2);
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public void searchForPolusACN() {
-        waitForElementToBeVisible(filter);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        try {
+            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
         filter.sendKeys(AppConfig.ACNvalidsearch3);
-        waitForElementToBeVisible(spreadsheetBody);
+        try {
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
     public String getValueSimpleCoACN() {
-        waitForElementToBeVisible(simpleCovalue);
-        waitForElementToBeVisible(spreadsheetBody);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
-        String vaueABN = find(johnsonvalue).getText();
-        return vaueABN;
+        try {
+            waitForElementToBeVisible(simpleCovalue);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
+        return find(johnsonvalue).getText();
     }
 
     public String getValuepolusACN() {
-        waitForElementToBeVisible(polusValue);
-        waitForElementToBeVisible(spreadsheetBody);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
-        String vaueABN = find(johnsonvalue).getText();
-        return vaueABN;
+        try {
+            waitForElementToBeVisible(polusValue);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
+        return find(johnsonvalue).getText();
     }
 
     public String getValueltGameACN() {
-        waitForElementToBeVisible(ltGamevalue);
-        waitForElementToBeVisible(spreadsheetBody);
-        waitForElementToBeVisible(spreadsheetWithCompaneys);
-        String vaueABN = find(johnsonvalue).getText();
-        return vaueABN;
+        try {
+            waitForElementToBeVisible(ltGamevalue);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
+        return find(johnsonvalue).getText();
     }
 
-    public void enebleFilters(){
-        waitForElementToBeVisible(enebleFilter);
-        enebleFilter.click();
-        waitForElementToBeVisible(filterButton);
-        filterButton.click();
-        waitForElementToBeVisible(filterContainer);
+    public void enebleFilters() {
+        elementClick(enebleFilter);
+        elementClick(filterButton);
+        try {
+            waitForElementToBeVisible(filterContainer);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
     }
 
-   public String activateAssociationFilter(){
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
-   }
-    public void disselectAssociationFilter(){
-        disselectCompanyFilters(associationFilter);
-    }
-    public String activateCopmFilter(){
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
-    }
-    public void disselectCopmFilter(){
-        disselectCompanyFilters(associationFilter);
-    }
-    public String activatForeinerFilter(){
+    public String activateAssociationFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
         selectCompanyFilters(associationFilter);
         return associationFilter.getText();
     }
-    public void disselectForeiFilter(){
-        disselectCompanyFilters(associationFilter);
-    }
-    public String activateGovFilter(){
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
-    }
-    public void disselectGovFilter(){
-        disselectCompanyFilters(associationFilter);
-    }
-    public String activatePertnerFilter(){
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
-    }
-    public void disselectPartnerFilter(){
-        disselectCompanyFilters(associationFilter);
-    }
-    public String activateSoleFilter(){
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
-    }
-    public void disselectSoleFilter(){
-        disselectCompanyFilters(associationFilter);
-    }
-    public String activateTrustFilter(){
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
-    }
-    public void disselectTrustFilter(){
+
+    public void disselectAssociationFilter() {
         disselectCompanyFilters(associationFilter);
     }
 
-    public void disablefilters(){
-        waitForElementToBeVisible(filterButton);
-        filterButton.click();
-        waitForElementToBeVisible(disableFilters);
-        disableFilters.click();
+    public String activateCopmFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return associationFilter.getText();
     }
 
-   public AlertPage openNotes(){
-        waitForElementToBeVisible(moreButton);
-        waitForElementToBeVisible(viewNotesButton);
-        waitForElementToBeVisible(paginationLeftClick);
-        moreButton.click();
-        viewNotesButton.click();
+    public void disselectCopmFilter() {
+        disselectCompanyFilters(associationFilter);
+    }
+
+    public String activatForeinerFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return associationFilter.getText();
+    }
+
+    public void disselectForeiFilter() {
+        disselectCompanyFilters(associationFilter);
+    }
+
+    public String activateGovFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return associationFilter.getText();
+    }
+
+    public void disselectGovFilter() {
+        disselectCompanyFilters(associationFilter);
+    }
+
+    public String activatePertnerFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return associationFilter.getText();
+    }
+
+    public void disselectPartnerFilter() {
+        disselectCompanyFilters(associationFilter);
+    }
+
+    public String activateSoleFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return associationFilter.getText();
+    }
+
+    public void disselectSoleFilter() {
+        disselectCompanyFilters(associationFilter);
+    }
+
+    public String activateTrustFilter() {
+        try {
+            selectCompanyFilters(associationFilter);
+        } catch (NoSuchElementException n) {
+            System.out.print("The element is not visible");
+        }
+        return associationFilter.getText();
+    }
+
+    public void disselectTrustFilter() {
+        disselectCompanyFilters(associationFilter);
+    }
+
+    public void disablefilters() {
+        elementClick(filterButton);
+        elementClick(disableFilters);
+    }
+
+    public AlertPage openNotes() {
+        try {
+            waitForElementToBeVisible(moreButton);
+            waitForElementToBeVisible(viewNotesButton);
+            waitForElementToBeVisible(paginationLeftClick);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
+        }
+        elementClick(moreButton);
+        elementClick(viewNotesButton);
         return new AlertPage(driver);
     }
 
-    public void paginationClick(){
-        waitForElementToBeVisible(currentPaginationPage);
-        waitForElementToBeVisible(paginationLeftClick);
-        waitForElementToBeVisible(paginationRightClick);
-        paginationLeftClick.click();
-        paginationRightClick.click();
+    public void paginationClick() {
+        try {
+            waitForElementToBeVisible(currentPaginationPage);
+            waitForElementToBeVisible(paginationLeftClick);
+            waitForElementToBeVisible(paginationRightClick);
+        } catch (NoSuchElementException n) {
+            System.out.print("The elements are not visible");
         }
+        elementClick(paginationLeftClick);
+        elementClick(paginationRightClick);
+    }
 
-     public ViewTreePage clickOnTreeButton(){
-        waitForElementToBeVisible(tree);
-        tree.click();
+    public ViewTreePage clickOnTreeButton() {
+        elementClick(tree);
         return new ViewTreePage(driver);
-     }
+    }
 
-     public OnlineReportPage reportsOpening(){
-       waitForElementToBeVisible(reportsButton);
-       reportsButton.click();
-       return new OnlineReportPage(driver);
-     }
+    public OnlineReportPage reportsOpening() {
+        elementClick(reportsButton);
+        return new OnlineReportPage(driver);
+    }
 
-     public void numberperPage(int a){
-         WebElement valuePerPageElement = find(companyPerPage);
-         Select value = new Select(valuePerPageElement);
-         value.selectByIndex(2);
-     }
+    public void numberperPage(int a) {
+        WebElement valuePerPageElement = find(companyPerPage);
+        Select value = new Select(valuePerPageElement);
+        value.selectByIndex(2);
+    }
 
-     public String getSelectedValueinPerPage(){
-         WebElement valuePerPageElement = find(companyPerPage);
-         Select value = new Select(valuePerPageElement);
-         String selectedValue = value.getFirstSelectedOption().getText();
-         return selectedValue;
-     }
+    public String getSelectedValueinPerPage() {
+        WebElement valuePerPageElement = find(companyPerPage);
+        Select value = new Select(valuePerPageElement);
+        return value.getFirstSelectedOption().getText();
+    }
 
-     public String getcompanyPerPageQuantity(){
+    public String getcompanyPerPageQuantity() {
         List<WebElement> companyRows = driver.findElements(By.xpath("//tr[@role='row']"));
         int rowCounter = companyRows.size();
-        String rows = String.valueOf(rowCounter);
-        return rows;
-       }
+        return String.valueOf(rowCounter);
+    }
 
-       public void downLoadReport(){
-        waitForElementToBeVisible(reportsButton);
-        reportsButton.click();
-        //waitForElementToBeVisible(reportsWindow);
-        waitForElementToBeVisible(downloadSpecificReport);
-        downloadSpecificReport.click();
+    public void downLoadReport() {
+        elementClick(reportsButton);
+        elementClick(downloadSpecificReport);
+    }
+
+    public Integer validationForDownloadRequest() throws IOException {
+        HttpClient client = HttpClientBuilder.create().setConnectionTimeToLive(2000, TimeUnit.MILLISECONDS).build();
+        HttpResponse httpResponse = client.execute(new HttpGet(AppConfig.urlToDonwloadReport));
+        HttpEntity entity = httpResponse.getEntity();
+        String responseCode = EntityUtils.toString(entity);
+        if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            System.out.print(responseCode);
+        } else {
+            throw new HttpResponseException(httpResponse.getStatusLine().getStatusCode(), responseCode);
         }
-
-        public Integer validationForDownloadRequest() throws IOException {
-            HttpClient client = HttpClientBuilder.create().setConnectionTimeToLive(2000, TimeUnit.MILLISECONDS).build();
-            HttpResponse httpResponse = client.execute(new HttpGet(AppConfig.urlToDonwloadReport));
-            HttpEntity entity = httpResponse.getEntity();
-            String responseCode = EntityUtils.toString(entity);
-            if(httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-                System.out.print(responseCode);
-            } else {
-                throw new HttpResponseException(httpResponse.getStatusLine().getStatusCode(), responseCode);
-            }
-            return HttpStatus.SC_OK;
-        }
-
+        return HttpStatus.SC_OK;
+    }
 }
 
 

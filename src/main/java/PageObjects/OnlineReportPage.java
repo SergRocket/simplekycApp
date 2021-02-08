@@ -1,6 +1,7 @@
 package PageObjects;
 
 import Utills.AppConfig;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,17 +20,26 @@ public class OnlineReportPage extends BasePage {
     }
 
     public boolean onlineReport(){
-        waitForElementToBeVisible(reportBody);
-        waitForElementToBeVisible(reportHeader);
-        waitForElementToBeVisible(downloadReport);
-        boolean report = reportBody.isDisplayed();
-        return report;
+        try {
+            waitForElementToBeVisible(reportBody);
+            if(reportBody.isDisplayed()){
+                return true;
+            }
+        } catch (NoSuchElementException n){
+            System.out.print("The element is not visible");
+            } try {
+            waitForElementToBeVisible(reportHeader);
+            waitForElementToBeVisible(downloadReport);
+        } catch (NoSuchElementException n){
+            System.out.print("The elements is not visible");
+        }
+        return reportBody.isDisplayed();
     }
 
     public void downloadReport(){
-        waitForElementToBeVisible(downloadReport);
-        downloadReport.click();
+        elementClick(downloadReport);
     }
+
     public boolean isdownloadedReport() throws InterruptedException {
         final int SLEEP_TIME_MILLIS = 1000;
         String fileName = "Main Report - SIMPLE CO PTY LTD  (4).pdf";

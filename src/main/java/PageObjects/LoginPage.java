@@ -1,6 +1,6 @@
 package PageObjects;
 
-import Utills.AppConfig;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,24 +22,30 @@ public class LoginPage extends BasePage {
     }
 
     public  boolean  afterLoginPageisOpen(){
-        waitForElementToBeVisible(credentialsInput);
+        try {
+            waitForElementToBeVisible(credentialsInput);
+            if(credentialsInput.isDisplayed()){
+                return true;
+            }
+        } catch (NoSuchElementException n){
+            System.out.print("The element is not visible");
+            }
         return credentialsInput.isDisplayed();
      }
 
     public WorklistsPage login(String password, String username){
         emailnput.sendKeys(username);
         passwordInput.sendKeys(password);
-        loginButton.click();
+        elementClick(loginButton);
         return new WorklistsPage(driver);
-    }
-    public boolean afterLoginUrl (){
-        boolean currentUrl = driver.getCurrentUrl().contains(AppConfig.expectedUrlAfterLogin);
-        return currentUrl;
     }
 
     public String checkErrorMessage(){
-        waitForElementToBeVisible(error);
+        try {
+            waitForElementToBeVisible(error);
+        } catch (NoSuchElementException n){
+            System.out.print("The element is not visible");
+        }
         return error.getText();
     }
-
 }

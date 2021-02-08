@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,9 +23,16 @@ public class AlertPage extends BasePage { //*[@id="notes-response"]/div[1]/div/d
     }
 
     public boolean checkVisibilityofElements(){
-        waitForElementToBeVisible(modalPopUp);
-       boolean alertElementVisible = modalPopUp.isDisplayed();
-       return alertElementVisible;
+        try {
+            waitForElementToBeVisible(modalPopUp);
+            if(modalPopUp.isDisplayed()){
+                System.out.print("The element is visible");
+                return true;
+            }
+        } catch (NoSuchElementException n){
+            System.out.print("The element is not shown");
+            }
+        return modalPopUp.isDisplayed();
     }
 
 }

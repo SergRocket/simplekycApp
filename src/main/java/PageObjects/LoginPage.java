@@ -6,15 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
-    @FindBy(className = "panel-body")
+    @FindBy(css = "form[role='form']")
     private WebElement credentialsInput;
-    @FindBy(name = "email")
+    @FindBy(css = "input[name='email']")
     private WebElement emailnput;
-    @FindBy(name = "password")
+    @FindBy(css = "input[name='password']")
     private WebElement passwordInput;
-    @FindBy(xpath = "//button[@class='btn btn-success']")
+    @FindBy(css = "button[type='submit']")
     private WebElement loginButton;
-    @FindBy(xpath = "//div[@class='alert alert-danger']")
+    @FindBy(css = "div[class='alert alert-danger']")
     private WebElement error;
 
     public LoginPage(WebDriver driver) {

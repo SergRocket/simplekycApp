@@ -13,7 +13,7 @@ import java.time.Duration;
 public class BasePage {
     public WebDriver driver;
     protected WebDriverWait wait;
-    int time = 0;
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -21,11 +21,12 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    protected void waitForElementToBeVisible(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
+    protected void waitForElementToBeVisible(WebElement element, int timeOut){
+        WebDriverWait configWait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
+        configWait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void waitForElementToBeVisible(WebElement element, int time) {
+    protected void waitForElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 

@@ -6,15 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ViewTreePage extends BasePage {
-    @FindBy(xpath = "//*[@id='treeNavbar']/div[2]")
+    @FindBy(css = "#mainTree")
     private WebElement treeNavBar;
-    @FindBy(id = "draggable")
+    @FindBy(css = "#draggable")
     private WebElement controlTreePanel;
-    @FindBy(id = "mainTree")
+    @FindBy(css = "#BOPSHalo")
     private WebElement maintree;
-    @FindBy(xpath = "//*[@id='get_id_ID-0']")
+    @FindBy(css = "#get_id_ID-0 > span")
     private WebElement idbutton;
-    @FindBy(xpath = "//*[@id='verify-bo-greenid-AU-1449']")
+    @FindBy(css = "button[data-ubo-dbid='1449']")
     private WebElement runIdVerifButton;
 
 

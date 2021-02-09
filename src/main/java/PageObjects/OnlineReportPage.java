@@ -9,11 +9,11 @@ import org.openqa.selenium.support.FindBy;
 import java.io.File;
 
 public class OnlineReportPage extends BasePage {
-    @FindBy(xpath = "//*[@id=\"right-report\"]/div[1]")
+    @FindBy(css = "#right-report > div.col-md-9.col-xs-9.canvas")
     private WebElement reportBody;
-    @FindBy(id = "simple-co-pty-ltd-cn-114944820-")
+    @FindBy(css = "h2[class='label-company-name']")
     private WebElement reportHeader;
-    @FindBy(id = "next-button")
+    @FindBy(css = "#next-button")
     private WebElement downloadReport;
     public OnlineReportPage(WebDriver driver) {
         super(driver);

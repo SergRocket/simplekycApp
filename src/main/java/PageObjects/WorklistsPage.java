@@ -21,84 +21,78 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class WorklistsPage extends BasePage {
-    @FindBy(className = "navbar-brand")
+    @FindBy(css = "a[class='navbar-brand']")
     private WebElement brandImage;
-    @FindBy(id = "thead-not-filter")
+    @FindBy(css = "#page-content")
     private WebElement spreadsheetWithCompaneys;
-    @FindBy(id = "worklist-table")
+    @FindBy(css = "body > div.page-body.clearfix")
     private WebElement spreadsheetBody;
-    @FindBy(className = "grey-119")
+    @FindBy(css = "span[class='grey-119']")
     private WebElement accountMenu;
-    @FindBy(xpath = "//span[@class='glyphicon glyphicon-log-out icon-general med-grey']")
+    @FindBy(css = "span[class*='glyphicon-log-out']")
     private WebElement logoutButton;
-    @FindBy(id = "app_filter")
+    @FindBy(css = "#filter-disable > span ")
     private WebElement filter;
-    @FindBy(id = "Name-S-BFUQwAzM-S")
+    @FindBy(css = "#Name-S-BFUQxAzM-S > a")
     private WebElement simpleCovalue;
-    @FindBy(id = "Name-S-BFUQ3kjM-S")
+    @FindBy(css = "#Name-S-BFUQ4kjM-S > a")
     private WebElement ltGamevalue;
-    @FindBy(id = "Name-S-BFUQ1MTM-S")
+    @FindBy(css = "#Name-S-BFUQykjM-S > a")
     private WebElement johnsonvalue;
-    @FindBy(css = "#filter-keyword > button")
+    @FindBy(css = "#filter-keyword > button > span")
     private WebElement getRemoveSearchQuery;
-    @FindBy(id = "Name-S-BFUQyUjM-S")
+    @FindBy(css = "#Name-S-BFUQyUjM-S > a")
     private WebElement polusValue;
-    @FindBy(id = "filter-enable")
+    @FindBy(css = "#filter-disable > span")
     private WebElement enebleFilter;
-    @FindBy(xpath = "//button[@class='multiselect dropdown-toggle btn btn-default']")
+    @FindBy(css = "#thead-filter > th:nth-child(5) > span > div > button")
     private WebElement filterButton;
-    @FindBy(xpath = "//input[@value='association']")
+    @FindBy(css = "input[value='association']")
     private WebElement associationFilter;
-    @FindBy(xpath = "//input[@value='company']")
+    @FindBy(css = "input[value='company']")
     private WebElement companyFilter;
-    @FindBy(xpath = "//input[@value='foreignerentity']")  //*[@id="filter-enable"]/span[1]
+    @FindBy(css = "input[value='foreignerentity']")
     private WebElement foreignerFilter;
-    @FindBy(xpath = "//input[@value='government body']")
+    @FindBy(css = "input[value*='government']")
     private WebElement govermentFilter;
-    @FindBy(xpath = "//input[@value='partnership']")
+    @FindBy(css = "input[value*='partnership']")
     private WebElement partnershipFilter;
-    @FindBy(xpath = "//input[@value='sole trader']")
+    @FindBy(css = "input[value*='trader']")
     private WebElement soleTraderFilter;
-    @FindBy(xpath = "//input[@value='trust']")
+    @FindBy(css = "input[value='trust']")
     private WebElement trustFilter;
-    @FindBy(xpath = "//*[@id=\"filter-enable\"]/span[1]")
+    @FindBy(css = "#filter-enable > span:nth-child(1)")
     private WebElement disableFilters;
-    @FindBy(xpath = "//*[@id=\"filter-keyword\"]/button")
+    @FindBy(css = "#filter-keyword > button > span")
     private WebElement removeSearchQuery;
-    @FindBy(xpath = "//*[@id=\"thead-filter\"]/th[5]/span/div/ul")
+    @FindBy(css = "#thead-filter > th:nth-child(5) > span > div > ul")
     private WebElement filterContainer;
-    @FindBy(xpath = "//span[@title='View More Options']")
+    @FindBy(css = "#application-tools-popover-S-BFUQxAzM-S > span")
     private WebElement moreButton;
-    @FindBy(id = "application-tools-popover-S-BFUQxAzM-S")
+    @FindBy(css = "#notes-trigger-S-BFUQxAzM-S > a")
     private WebElement viewNotesButton;
-    @FindBy(id = "previous-usr-page")
+    @FindBy(css = "#next-usr-page")
     private WebElement paginationLeftClick;
-    @FindBy(id = "next-usr-page")
+    @FindBy(css = "#previous-usr-page")
     private WebElement paginationRightClick;
-    @FindBy(id = "current-usr-page")
+    @FindBy(css = "#current-usr-page")
     private WebElement currentPaginationPage;
-    @FindBy(xpath = "//lable[@class='checkbox']")
-    private WebElement allcheckboxes;
-    @FindBy(id = "Tree-S-BFUQxAzM-S")
+    @FindBy(css = "#Tree-S-EUQBVjN-S")
     private WebElement tree;
-    @FindBy(xpath = "//*[@id='reports-popover']/div[2]/button")
+    @FindBy(css = "button[onClick*='downloadAll']")
     private WebElement downloadALLReportsButton;
-    @FindBy(xpath = "//*[@id=\"ReportsList-S-BFUQxAzM-S\"]")
+    @FindBy(css = "#documents-list > tr:nth-child(1) > td:nth-child(1) > a > div > strong")
     private WebElement onlineReport;
-    @FindBy(css = "#popover199876")
+    @FindBy(css = "div[role='tooltip']")
     private WebElement reportsWindow;
-    @FindBy(id = "documents-list")
-    private WebElement documentList;
-    @FindBy(css = "#documents-list > tr:nth-child(1) > td:nth-child(3) > a")
+    @FindBy(css = "#documents-list > tr:nth-child(1) > td:nth-child(3) > a > span")
     private WebElement downloadSpecificReport;
-    @FindBy(xpath = "//*[@id='ReportsList-S-BFUQxAzM-S']")
+    @FindBy(css = "#ReportsList-S-EUQBVjN-S")
     private WebElement reportsButton;
-    @FindBy(id = "select-number-lines")
+    @FindBy(css = "#select-number-lines")
     private WebElement companyPerPage;
-    @FindBy(xpath = "//tr[@role='row']")
+    @FindBy(css = "tr[role='row']")
     private WebElement companyRowInfo;
-    @FindBy(xpath = "//*[@id=\"ET-S-BFUQ4kjM-S\"]")
-    private WebElement valueForFilteringinRow;
 
     public WorklistsPage(WebDriver driver) {
         super(driver);
@@ -455,7 +449,7 @@ public class WorklistsPage extends BasePage {
     }
 
     public String getcompanyPerPageQuantity() {
-        List<WebElement> companyRows = driver.findElements(By.xpath("//tr[@role='row']"));
+        List<WebElement> companyRows = driver.findElements((By) companyRowInfo);
         int rowCounter = companyRows.size();
         return String.valueOf(rowCounter);
     }

@@ -9,7 +9,6 @@ import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,9 +30,9 @@ public class WorklistsPage extends BasePage {
     private WebElement accountMenu;
     @FindBy(css = "span[class*='glyphicon-log-out']")
     private WebElement logoutButton;
-    @FindBy(css = "#filter-disable > span ")
-    private WebElement filter;
-    @FindBy(css = "#Name-S-BFUQxAzM-S > a")
+    @FindBy(css = "#app_filter ")
+    private WebElement searchField;
+    @FindBy(css = "#Name-S-BFUQ5kjM-S > a")
     private WebElement simpleCovalue;
     @FindBy(css = "#Name-S-BFUQ4kjM-S > a")
     private WebElement ltGamevalue;
@@ -69,7 +68,7 @@ public class WorklistsPage extends BasePage {
     private WebElement filterContainer;
     @FindBy(css = "#application-tools-popover-S-BFUQxAzM-S > span")
     private WebElement moreButton;
-    @FindBy(css = "#notes-trigger-S-BFUQxAzM-S > a")
+    @FindBy(css = "#Notes-S-BFUQxAzM-S")
     private WebElement viewNotesButton;
     @FindBy(css = "#next-usr-page")
     private WebElement paginationLeftClick;
@@ -77,7 +76,7 @@ public class WorklistsPage extends BasePage {
     private WebElement paginationRightClick;
     @FindBy(css = "#current-usr-page")
     private WebElement currentPaginationPage;
-    @FindBy(css = "#Tree-S-EUQBVjN-S")
+    @FindBy(css = "#table_body_aplications > tr.usr-row-301 > td.tbl-vert-padding-icon-tree.worklist-icon-style")
     private WebElement tree;
     @FindBy(css = "button[onClick*='downloadAll']")
     private WebElement downloadALLReportsButton;
@@ -87,12 +86,26 @@ public class WorklistsPage extends BasePage {
     private WebElement reportsWindow;
     @FindBy(css = "#documents-list > tr:nth-child(1) > td:nth-child(3) > a > span")
     private WebElement downloadSpecificReport;
-    @FindBy(css = "#ReportsList-S-EUQBVjN-S")
+    @FindBy(css = "span[title='SIMPLE CO PTY LTD  Reports']")
     private WebElement reportsButton;
     @FindBy(css = "#select-number-lines")
     private WebElement companyPerPage;
+    @FindBy(css = "#ET-S-BFUQ1gjM-S")
+    private WebElement filteredAssociationCompanyOnly;
+    @FindBy(css = "#ET-S-BFUQ4gjM-S")
+    private WebElement filteredCompanyCompOnly;
+    @FindBy(css = "#applications_count")
+    private WebElement filtereForeignComOnly;
+    @FindBy(css = "#ET-S-BFUQ1cjM-S")
+    private WebElement filteredGovCompOnly;
+    @FindBy(css = "#ET-S-BFUQzQTM-S")
+    private WebElement filteredPartnershipCompOnly;
+    @FindBy(css = "#ET-S-BFUQ2IjM-S")
+    private WebElement filteredSoleTrCopmOnly;
+    @FindBy(css = "#ET-S-BFUQ1MTM-S")
+    private WebElement filteredTrustCompOnly;
     @FindBy(css = "tr[role='row']")
-    private WebElement companyRowInfo;
+    private List<WebElement> companyRowsInfo;
 
     public WorklistsPage(WebDriver driver) {
         super(driver);
@@ -129,86 +142,18 @@ public class WorklistsPage extends BasePage {
         return vaueABN;
     }
 
-    public String getValueLtGame() {
-        try {
-            waitForElementToBeVisible(ltGamevalue);
-            waitForElementToBeVisible(spreadsheetBody);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        String vaueABN = find(ltGamevalue).getText();
-        return vaueABN;
-    }
-
-    public String getValueJohnson() {
-        try {
-            waitForElementToBeVisible(johnsonvalue);
-            waitForElementToBeVisible(spreadsheetBody);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        String vaueABN = find(johnsonvalue).getText();
-        return vaueABN;
-    }
-
     protected WebElement find(WebElement element) {
         return element;
     }
 
     public void searchForSimpleCO() {
         try {
-            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(searchField);
             waitForElementToBeVisible(spreadsheetWithCompaneys);
         } catch (NoSuchElementException n) {
             System.out.print("The elements are not visible");
         }
-        filter.sendKeys(AppConfig.ABNvalidsearch1);
-        try {
-            waitForElementToBeVisible(spreadsheetBody);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-    }
-
-    public void searchForLtgame() {
-        try {
-            waitForElementToBeVisible(filter);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        filter.sendKeys(AppConfig.ABNvalidsearch2);
-        try {
-            waitForElementToBeVisible(spreadsheetBody);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-    }
-
-    public void searchForJohnsonFamily() {
-        try {
-            waitForElementToBeVisible(filter);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        filter.sendKeys(AppConfig.ABNvalidsearch3);
-        try {
-            waitForElementToBeVisible(spreadsheetBody);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-    }
-
-    public void clearSearch() {
-        try {
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        elementClick(removeSearchQuery);
+        searchField.sendKeys(AppConfig.ABNvalidsearch1);
         try {
             waitForElementToBeVisible(spreadsheetBody);
         } catch (NoSuchElementException n) {
@@ -218,42 +163,12 @@ public class WorklistsPage extends BasePage {
 
     public void searchForSimpleCoACN() {
         try {
-            waitForElementToBeVisible(filter);
+            waitForElementToBeVisible(searchField);
             waitForElementToBeVisible(spreadsheetWithCompaneys);
         } catch (NoSuchElementException n) {
             System.out.print("The elements are not visible");
         }
-        filter.sendKeys(AppConfig.ACNvalidsearch1);
-        try {
-            waitForElementToBeVisible(spreadsheetBody);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-    }
-
-    public void searchForLtGameACN() {
-        try {
-            waitForElementToBeVisible(filter);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        filter.sendKeys(AppConfig.ACNvalidsearch2);
-        try {
-            waitForElementToBeVisible(spreadsheetBody);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-    }
-
-    public void searchForPolusACN() {
-        try {
-            waitForElementToBeVisible(filter);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        filter.sendKeys(AppConfig.ACNvalidsearch3);
+        searchField.sendKeys(AppConfig.ACNvalidsearch1);
         try {
             waitForElementToBeVisible(spreadsheetBody);
         } catch (NoSuchElementException n) {
@@ -269,29 +184,7 @@ public class WorklistsPage extends BasePage {
         } catch (NoSuchElementException n) {
             System.out.print("The elements are not visible");
         }
-        return find(johnsonvalue).getText();
-    }
-
-    public String getValuepolusACN() {
-        try {
-            waitForElementToBeVisible(polusValue);
-            waitForElementToBeVisible(spreadsheetBody);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        return find(johnsonvalue).getText();
-    }
-
-    public String getValueltGameACN() {
-        try {
-            waitForElementToBeVisible(ltGamevalue);
-            waitForElementToBeVisible(spreadsheetBody);
-            waitForElementToBeVisible(spreadsheetWithCompaneys);
-        } catch (NoSuchElementException n) {
-            System.out.print("The elements are not visible");
-        }
-        return find(johnsonvalue).getText();
+        return find(simpleCovalue).getText();
     }
 
     public void enebleFilters() {
@@ -304,107 +197,145 @@ public class WorklistsPage extends BasePage {
         }
     }
 
-    public String activateAssociationFilter() {
+    public void activateAssociationFilter() {
         try {
-            selectCompanyFilters(associationFilter);
+            elementClick(associationFilter);
         } catch (NoSuchElementException n) {
             System.out.print("The element is not visible");
         }
-        selectCompanyFilters(associationFilter);
-        return associationFilter.getText();
+    }
+
+    public void activateCompanyFilter() {
+        try {
+            elementClick(companyFilter);
+        } catch (NoSuchElementException n) {
+            System.out.println("The element is not visible");
+        }
+    }
+
+    public void activateForeignFilter() {
+        try {
+            elementClick(foreignerFilter);
+        } catch (NoSuchElementException n) {
+            System.out.println("The element is not visible");
+        }
+    }
+
+    public void activateGovernFilter() {
+        try {
+            elementClick(govermentFilter);
+        } catch (NoSuchElementException n) {
+            System.out.println("The element is not visible");
+        }
+    }
+
+    public void activatePernershipFilter() {
+        try {
+            elementClick(partnershipFilter);
+        } catch (NoSuchElementException n) {
+            System.out.println("The element is not shown");
+        }
+    }
+
+    public void activateSoleTrFilter() {
+        try {
+            elementClick(soleTraderFilter);
+        } catch (NoSuchElementException n) {
+            System.out.println("The element is not shown");
+        }
+    }
+
+    public void activTrustFilter() {
+        try {
+            elementClick(trustFilter);
+        } catch (NoSuchElementException n) {
+            System.out.println("The element is not shown");
+        }
+    }
+
+    public String getFilteredbySeventhCompanyType() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filteredTrustCompOnly).getText();
+    }
+
+    public String getFilteredbySixthCompanyType() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filteredSoleTrCopmOnly).getText();
+    }
+
+    public String getFilteredbyifthCompanyType() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filteredPartnershipCompOnly).getText();
+    }
+
+    public String getFilteredbyForthCompanyType() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filteredGovCompOnly).getText();
+    }
+
+    public String getFilteredbyThirdCompanyType() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filtereForeignComOnly).getText();
+    }
+
+    public String getFilteredbySecondCompanytype() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filteredCompanyCompOnly).getText();
+    }
+
+    public String getFilteredbyFirstCompanyType() {
+        try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+        } catch (NoSuchElementException n) {
+            System.out.println("The elements are not peresent");
+        }
+        return find(filteredAssociationCompanyOnly).getText();
     }
 
     public void disselectAssociationFilter() {
-        disselectCompanyFilters(associationFilter);
-    }
 
-    public String activateCopmFilter() {
-        try {
-            selectCompanyFilters(associationFilter);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        return associationFilter.getText();
+        disselectCompanyFilters(associationFilter);
     }
 
     public void disselectCopmFilter() {
-        disselectCompanyFilters(associationFilter);
+        disselectCompanyFilters(companyFilter);
     }
 
-    public String activatForeinerFilter() {
-        try {
-            selectCompanyFilters(associationFilter);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        return associationFilter.getText();
-    }
-
-    public void disselectForeiFilter() {
-        disselectCompanyFilters(associationFilter);
-    }
-
-    public String activateGovFilter() {
-        try {
-            selectCompanyFilters(associationFilter);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        return associationFilter.getText();
-    }
-
-    public void disselectGovFilter() {
-        disselectCompanyFilters(associationFilter);
-    }
-
-    public String activatePertnerFilter() {
-        try {
-            selectCompanyFilters(associationFilter);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        return associationFilter.getText();
-    }
-
-    public void disselectPartnerFilter() {
-        disselectCompanyFilters(associationFilter);
-    }
-
-    public String activateSoleFilter() {
-        try {
-            selectCompanyFilters(associationFilter);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        return associationFilter.getText();
-    }
-
-    public void disselectSoleFilter() {
-        disselectCompanyFilters(associationFilter);
-    }
-
-    public String activateTrustFilter() {
-        try {
-            selectCompanyFilters(associationFilter);
-        } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
-        }
-        return associationFilter.getText();
-    }
-
-    public void disselectTrustFilter() {
-        disselectCompanyFilters(associationFilter);
-    }
-
-    public void disablefilters() {
-        elementClick(filterButton);
-        elementClick(disableFilters);
-    }
 
     public AlertPage openNotes() {
         try {
             waitForElementToBeVisible(moreButton);
-            waitForElementToBeVisible(viewNotesButton);
             waitForElementToBeVisible(paginationLeftClick);
         } catch (NoSuchElementException n) {
             System.out.print("The elements are not visible");
@@ -433,6 +364,7 @@ public class WorklistsPage extends BasePage {
 
     public OnlineReportPage reportsOpening() {
         elementClick(reportsButton);
+        elementClick(onlineReport);
         return new OnlineReportPage(driver);
     }
 
@@ -449,8 +381,7 @@ public class WorklistsPage extends BasePage {
     }
 
     public String getcompanyPerPageQuantity() {
-        List<WebElement> companyRows = driver.findElements((By) companyRowInfo);
-        int rowCounter = companyRows.size();
+        int rowCounter = companyRowsInfo.size();
         return String.valueOf(rowCounter);
     }
 

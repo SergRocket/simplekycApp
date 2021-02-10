@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,7 +11,7 @@ public class IdReportPage extends BasePage {
     private WebElement nameOfIndividual;
     @FindBy(css = "#modal-v2-close")
     private WebElement closereportButton;
-    @FindBy(css= "#verification-screening-modal")
+    @FindBy(css= "#modal-verification-ubo")
     private WebElement idReport;
 
     public IdReportPage(WebDriver driver) {
@@ -24,15 +25,16 @@ public class IdReportPage extends BasePage {
                 System.out.print("The element is visible");
             }
         } catch (NoSuchElementException n) {
-            System.out.print("The element is not visible");
+            System.out.println("The element is not visible");
             return false;
         }
         return idReport.isDisplayed();
     }
 
     public void closeIdReport() {
-        elementClick(closereportButton);
-    }
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", closereportButton);
+        }
 
     public String checkIndividualsName() {
         try {

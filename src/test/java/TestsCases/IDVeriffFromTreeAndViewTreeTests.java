@@ -16,7 +16,8 @@ public class IDVeriffFromTreeAndViewTreeTests extends BaseTest {
 
         WorklistsPage worklistsPage = new WorklistsPage(driver);
         ViewTreePage viewTreePage = worklistsPage.clickOnTreeButton();
-        IdReportPage idReportPage = viewTreePage.startIdVerif();
+        IdReportPage idReportPage = new IdReportPage(driver);
+        viewTreePage.startIdVerif();
         String individualName = idReportPage.checkIndividualsName();
 
         Assert.assertTrue(individualName.contains(AppConfig.ExpectedIndividualName));

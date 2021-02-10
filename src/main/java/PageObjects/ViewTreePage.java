@@ -10,7 +10,7 @@ public class ViewTreePage extends BasePage {
     private WebElement treeNavBar;
     @FindBy(css = "#draggable")
     private WebElement controlTreePanel;
-    @FindBy(css = "#BOPSHalo")
+    @FindBy(css = "#mainTree")
     private WebElement maintree;
     @FindBy(css = "#get_id_ID-0 > span")
     private WebElement idbutton;
@@ -58,9 +58,8 @@ public class ViewTreePage extends BasePage {
         return maintree.isDisplayed();
     }
 
-    public IdReportPage startIdVerif() {
+    public void startIdVerif() {
         elementClick(idbutton);
         elementClick(runIdVerifButton);
-        return new IdReportPage(driver);
-    }
+        }
 }

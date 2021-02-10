@@ -3,49 +3,98 @@ package TestsCases;
 import PageObjects.LoginPage;
 import PageObjects.WorklistsPage;
 import Utills.AppConfig;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class WorklistFilterbyType extends BaseTest {
-    @Test
-    public void filterByType(){
+    @Test(testName = "Tests to check filter Association ", groups = "positive")
+    public void filterByTypeAssociation() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
         WorklistsPage worklistsPage = new WorklistsPage(driver);
         worklistsPage.enebleFilters();
         worklistsPage.activateAssociationFilter();
-        String selecteAssosiationdValue = worklistsPage.activateAssociationFilter();
-        System.out.print("The first selected value is " + selecteAssosiationdValue);
+        String filteredCompanyType = worklistsPage.getFilteredbyFirstCompanyType();
+        System.out.print("The first selected value is " + filteredCompanyType);
+        Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeFirstFilter));
         worklistsPage.disselectAssociationFilter();
+    }
 
-        worklistsPage.activateCopmFilter();
-        String selectedCompanyValue = worklistsPage.activateCopmFilter();
+    @Test(testName = "Tests to check filter Company", groups = "positive")
+    public void filterByTypeCompany() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        WorklistsPage worklistsPage = new WorklistsPage(driver);
+        worklistsPage.enebleFilters();
+        worklistsPage.activateCompanyFilter();
+        String selectedCompanyValue = worklistsPage.getFilteredbySecondCompanytype();
         System.out.println("The second selected value is " + selectedCompanyValue);
+        Assert.assertTrue(selectedCompanyValue.equals(AppConfig.companyTypeSecondFilter));
         worklistsPage.disselectCopmFilter();
+    }
 
-        worklistsPage.activatForeinerFilter();
-        String selectedForeignCompany = worklistsPage.activatForeinerFilter();
-        System.out.println("The second selected value is " + selectedForeignCompany);
-        worklistsPage.disselectForeiFilter();
+    @Test(testName = "Tests to check filter Foreign Company", groups = "positive")
+    public void filterByTypeForeignCompany() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        WorklistsPage worklistsPage = new WorklistsPage(driver);
+        worklistsPage.enebleFilters();
+        worklistsPage.activateForeignFilter();
+        String filteredCompanyType = worklistsPage.getFilteredbyThirdCompanyType();
+        System.out.print("The first selected value is " + filteredCompanyType);
+        Assert.assertTrue(filteredCompanyType.contains(AppConfig.companyTypeThirdFilter));
+        worklistsPage.disselectAssociationFilter();
+    }
 
-        worklistsPage.disselectGovFilter();
-        String selectedGovCompany = worklistsPage.activateGovFilter();
-        System.out.println("The second selected value is " + selectedGovCompany);
-        worklistsPage.disselectGovFilter();
+    @Test(testName = "Tests to check filter Govermant body", groups = "positive")
+    public void filterByTypeGovermentBody() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        WorklistsPage worklistsPage = new WorklistsPage(driver);
+        worklistsPage.enebleFilters();
+        worklistsPage.activateGovernFilter();
+        String filteredCompanyType = worklistsPage.getFilteredbyForthCompanyType();
+        System.out.print("The first selected value is " + filteredCompanyType);
+        Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeForthFilter));
+        worklistsPage.disselectAssociationFilter();
+    }
 
-        worklistsPage.disselectPartnerFilter();
-        String selectedPartnershipCompany = worklistsPage.activatePertnerFilter();
-        System.out.println("The second selected value is "+ selectedPartnershipCompany);
-        worklistsPage.disselectPartnerFilter();
+    @Test(testName = "Tests to check filter Partnership", groups = "positive")
+    public void filterByTypePartnership() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        WorklistsPage worklistsPage = new WorklistsPage(driver);
+        worklistsPage.enebleFilters();
+        worklistsPage.activatePernershipFilter();
+        String filteredCompanyType = worklistsPage.getFilteredbyifthCompanyType();
+        System.out.print("The first selected value is " + filteredCompanyType);
+        Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeFifthFilter));
+        worklistsPage.disselectAssociationFilter();
+    }
 
-        worklistsPage.activateSoleFilter();
-        String selectedSoleTrCompany = worklistsPage.activateSoleFilter();
-        System.out.println("The second selected value is "+ selectedSoleTrCompany);
-        worklistsPage.disselectSoleFilter();
+    @Test(testName = "Tests to check filter Sole Trader", groups = "positive")
+    public void filterByTypeSoleTrader() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        WorklistsPage worklistsPage = new WorklistsPage(driver);
+        worklistsPage.enebleFilters();
+        worklistsPage.activateSoleTrFilter();
+        String filteredCompanyType = worklistsPage.getFilteredbySixthCompanyType();
+        System.out.print("The first selected value is " + filteredCompanyType);
+        Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeSixthFilter));
+        worklistsPage.disselectAssociationFilter();
+    }
 
-        worklistsPage.activateTrustFilter();
-        String selectedTrustCompany = worklistsPage.activateTrustFilter();
-        System.out.println("The second selected value is "+ selectedTrustCompany);
-        worklistsPage.disselectTrustFilter();
-        worklistsPage.disablefilters();
-        }
+    @Test(testName = "Tests to check filter Trust", groups = "positive")
+    public void filterByTypeTrust() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        WorklistsPage worklistsPage = new WorklistsPage(driver);
+        worklistsPage.enebleFilters();
+        worklistsPage.activTrustFilter();
+        String filteredCompanyType = worklistsPage.getFilteredbySeventhCompanyType();
+        System.out.print("The first selected value is " + filteredCompanyType);
+        Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeSeventhFilter));
+        worklistsPage.disselectAssociationFilter();
+    }
 }

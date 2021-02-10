@@ -30,7 +30,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected WebElement findElement(WebElement element) {
+   protected WebElement findElement(WebElement element) {
         return element;
     }
 

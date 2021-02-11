@@ -34,5 +34,4 @@ public class AlertPage extends BasePage {
             }
         return modalPopUp.isDisplayed();
     }
-
 }

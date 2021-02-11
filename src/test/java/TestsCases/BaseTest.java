@@ -24,6 +24,7 @@ public class BaseTest {
 
     @AfterMethod
     public void shuttingDown() {
+        driver.manage().deleteAllCookies();
         driver.close();
         if (driver != null) {
             driver.quit();

@@ -8,21 +8,21 @@ import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest {
 
+    @Test(testName = "Tests to check if user can loginout with valid credentials", groups="positive")
+    public void loginOut() throws InterruptedException {
+        LoginPage loginPage = new  LoginPage(driver);
+        WorklistsPage worklistsPage = loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
+        worklistsPage.logout();
+
+        Assert.assertTrue(loginPage.afterLoginPageisOpen());
+    }
+
     @Test(testName = "Tests to check if user can login with valid credentials", groups="positive")
     public void validLogin(){
         LoginPage loginPage = new LoginPage(driver);
         WorklistsPage worklistsPage = loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
 
         Assert.assertTrue(worklistsPage.isUrlandCompanyLogoVisible());
-    }
-
-    @Test(testName = "Tests to check if user can loginout with valid credentials", groups="positive")
-    public void loginOut(){
-        LoginPage loginPage = new  LoginPage(driver);
-        WorklistsPage worklistsPage = loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
-        worklistsPage.logout();
-
-        Assert.assertTrue(loginPage.afterLoginPageisOpen());
     }
 
     @Test(testName = "Tests to check if user can not login with invalid credentials", groups="negative")

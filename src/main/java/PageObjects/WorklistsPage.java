@@ -90,7 +90,7 @@ public class WorklistsPage extends BasePage {
     private WebElement reportsButton;
     @FindBy(css = "#select-number-lines")
     private WebElement companyPerPage;
-    @FindBy(css = "#ET-S-BFUQ1gjM-S")
+    @FindBy(css = "#ET-S-BFUQzYjM-S")
     private WebElement filteredAssociationCompanyOnly;
     @FindBy(css = "#ET-S-BFUQ4gjM-S")
     private WebElement filteredCompanyCompOnly;
@@ -125,7 +125,10 @@ public class WorklistsPage extends BasePage {
         return brandImage.isDisplayed() && spreadsheetWithCompaneys.isDisplayed();
     }
 
-    public void logout() {
+    public void logout() throws InterruptedException {
+        waitForElementToBeVisible(spreadsheetWithCompaneys);
+        waitForElementToBeVisible(spreadsheetBody);
+        sleep();
         elementClick(accountMenu);
         elementClick(logoutButton);
     }
@@ -199,8 +202,12 @@ public class WorklistsPage extends BasePage {
 
     public void activateAssociationFilter() {
         try {
+            waitForElementToBeVisible(spreadsheetWithCompaneys);
+            waitForElementToBeVisible(spreadsheetBody);
+            waitForElementToBeVisible(currentPaginationPage);
             elementClick(associationFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.print("The element is not visible");
         }
     }
@@ -208,7 +215,8 @@ public class WorklistsPage extends BasePage {
     public void activateCompanyFilter() {
         try {
             elementClick(companyFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.println("The element is not visible");
         }
     }
@@ -216,7 +224,8 @@ public class WorklistsPage extends BasePage {
     public void activateForeignFilter() {
         try {
             elementClick(foreignerFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.println("The element is not visible");
         }
     }
@@ -224,7 +233,8 @@ public class WorklistsPage extends BasePage {
     public void activateGovernFilter() {
         try {
             elementClick(govermentFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.println("The element is not visible");
         }
     }
@@ -232,7 +242,8 @@ public class WorklistsPage extends BasePage {
     public void activatePernershipFilter() {
         try {
             elementClick(partnershipFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.println("The element is not shown");
         }
     }
@@ -240,7 +251,8 @@ public class WorklistsPage extends BasePage {
     public void activateSoleTrFilter() {
         try {
             elementClick(soleTraderFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.println("The element is not shown");
         }
     }
@@ -248,7 +260,8 @@ public class WorklistsPage extends BasePage {
     public void activTrustFilter() {
         try {
             elementClick(trustFilter);
-        } catch (NoSuchElementException n) {
+            sleep();
+        } catch (NoSuchElementException | InterruptedException n) {
             System.out.println("The element is not shown");
         }
     }
@@ -257,6 +270,7 @@ public class WorklistsPage extends BasePage {
         try {
             waitForElementToBeVisible(spreadsheetWithCompaneys);
             waitForElementToBeVisible(spreadsheetBody);
+            elementClick(filterButton);
         } catch (NoSuchElementException n) {
             System.out.println("The elements are not peresent");
         }
@@ -322,16 +336,6 @@ public class WorklistsPage extends BasePage {
         }
         return find(filteredAssociationCompanyOnly).getText();
     }
-
-    public void disselectAssociationFilter() {
-
-        disselectCompanyFilters(associationFilter);
-    }
-
-    public void disselectCopmFilter() {
-        disselectCompanyFilters(companyFilter);
-    }
-
 
     public AlertPage openNotes() {
         try {

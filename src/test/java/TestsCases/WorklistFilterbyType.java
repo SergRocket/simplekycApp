@@ -17,8 +17,7 @@ public class WorklistFilterbyType extends BaseTest {
         String filteredCompanyType = worklistsPage.getFilteredbyFirstCompanyType();
         System.out.print("The first selected value is " + filteredCompanyType);
         Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeFirstFilter));
-        worklistsPage.disselectAssociationFilter();
-    }
+        }
 
     @Test(testName = "Tests to check filter Company", groups = "positive")
     public void filterByTypeCompany() {
@@ -30,8 +29,7 @@ public class WorklistFilterbyType extends BaseTest {
         String selectedCompanyValue = worklistsPage.getFilteredbySecondCompanytype();
         System.out.println("The second selected value is " + selectedCompanyValue);
         Assert.assertTrue(selectedCompanyValue.equals(AppConfig.companyTypeSecondFilter));
-        worklistsPage.disselectCopmFilter();
-    }
+        }
 
     @Test(testName = "Tests to check filter Foreign Company", groups = "positive")
     public void filterByTypeForeignCompany() {
@@ -43,8 +41,7 @@ public class WorklistFilterbyType extends BaseTest {
         String filteredCompanyType = worklistsPage.getFilteredbyThirdCompanyType();
         System.out.print("The first selected value is " + filteredCompanyType);
         Assert.assertTrue(filteredCompanyType.contains(AppConfig.companyTypeThirdFilter));
-        worklistsPage.disselectAssociationFilter();
-    }
+        }
 
     @Test(testName = "Tests to check filter Govermant body", groups = "positive")
     public void filterByTypeGovermentBody() {
@@ -56,8 +53,7 @@ public class WorklistFilterbyType extends BaseTest {
         String filteredCompanyType = worklistsPage.getFilteredbyForthCompanyType();
         System.out.print("The first selected value is " + filteredCompanyType);
         Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeForthFilter));
-        worklistsPage.disselectAssociationFilter();
-    }
+        }
 
     @Test(testName = "Tests to check filter Partnership", groups = "positive")
     public void filterByTypePartnership() {
@@ -69,8 +65,7 @@ public class WorklistFilterbyType extends BaseTest {
         String filteredCompanyType = worklistsPage.getFilteredbyifthCompanyType();
         System.out.print("The first selected value is " + filteredCompanyType);
         Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeFifthFilter));
-        worklistsPage.disselectAssociationFilter();
-    }
+        }
 
     @Test(testName = "Tests to check filter Sole Trader", groups = "positive")
     public void filterByTypeSoleTrader() {
@@ -82,8 +77,7 @@ public class WorklistFilterbyType extends BaseTest {
         String filteredCompanyType = worklistsPage.getFilteredbySixthCompanyType();
         System.out.print("The first selected value is " + filteredCompanyType);
         Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeSixthFilter));
-        worklistsPage.disselectAssociationFilter();
-    }
+        }
 
     @Test(testName = "Tests to check filter Trust", groups = "positive")
     public void filterByTypeTrust() {
@@ -95,6 +89,5 @@ public class WorklistFilterbyType extends BaseTest {
         String filteredCompanyType = worklistsPage.getFilteredbySeventhCompanyType();
         System.out.print("The first selected value is " + filteredCompanyType);
         Assert.assertTrue(filteredCompanyType.equals(AppConfig.companyTypeSeventhFilter));
-        worklistsPage.disselectAssociationFilter();
-    }
+        }
 }

@@ -39,11 +39,6 @@ public class BasePage {
         element.click();
     }
 
-    protected void disselectCompanyFilters(WebElement element) {
-        waitForElementToBeVisible(element);
-        element.click();
-    }
-
     protected void elementClick(WebElement element) {
         try {
             waitForElementToBeVisible(element);
@@ -52,4 +47,8 @@ public class BasePage {
         }
         element.click();
     }
+    public void sleep() throws InterruptedException {
+        Thread.sleep(2300);
+    }
+
 }

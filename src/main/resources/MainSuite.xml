@@ -17,14 +17,13 @@
             </class>
             <class name="TestsCases.LoginTests">
                 <methods>
-                    <include name="validLogin"/>
                     <include name="loginOut"/>
+                    <include name="validLogin"/>
                     <include name="invalidLogIn"/>
                 </methods>
             </class>
             <class name="TestsCases.PaginationViewAndPerPageTests">
-                <methods>
-                    <include name="paginationTest"/>
+                <methods><include name="paginationTest"/>
                     <include name="viewPerPage"/>
                 </methods>
             </class>
@@ -33,15 +32,21 @@
                     <include name="viewNotes"/>
                 </methods>
             </class>
+            <class name="TestsCases.WorklistFilterbyType">
+                <methods>
+                    <include name="filterByTypeAssociation"/>
+                    <include name="filterByTypeCompany"/>
+                    <include name="filterByTypeForeignCompany"/>
+                    <include name="filterByTypeGovermentBody"/>
+                    <include name="filterByTypePartnership"/>
+                    <include name="filterByTypeSoleTrader"/>
+                    <include name="filterByTypeTrust"/>
+                </methods>
+            </class>
             <class name="TestsCases.WorklistFiltersAndSerchByTests">
                 <methods>
-                    <include name="filterByType"/>
                     <include name="searchInputABNSimpleCO"/>
-                    <include name="searchInputABNLtGame"/>
-                    <include name="searchInputJohnsonFamily"/>
                     <include name="searchInputACNSimpleCO"/>
-                    <include name="searchInputACNLtGame"/>
-                    <include name="searchInputACNSimpleKyc"/>
                 </methods>
             </class>
         </classes>

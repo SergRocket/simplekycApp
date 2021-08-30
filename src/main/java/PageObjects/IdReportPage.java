@@ -5,11 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class IdReportPage extends BasePage {
-    @FindBy(xpath = "//*[@id=\"c_vue_fullName0\"]/div/div[1]/div/button/div")
+    @FindBy(xpath = "//*[@id='c_vue_fullName0']/div/div[1]/div/button/div")
     private WebElement nameOfIndividual;
-    @FindBy(xpath = "//*[@id=\"modal-v2-close\"]")
+    @FindBy(xpath = "//*[@id='modal-v2-close']")
     private WebElement closereportButton;
-    @FindBy(xpath = "//*[@id=\"verification-screening-modal\"]")
+    @FindBy(xpath = "//*[@id='individual-left']")
     private WebElement idReport;
     public IdReportPage(WebDriver driver) {
         super(driver);

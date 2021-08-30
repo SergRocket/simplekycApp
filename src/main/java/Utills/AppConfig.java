@@ -19,5 +19,6 @@ public class AppConfig {
         public static final String filePath = "C:\\Users\\schimbay\\Downloads";
 
         // Project configuration
-        public static final int TIMEOUT = 10;
+        public static final int TIMEOUT = 7;
+        public static final String lookingFor = "Gard Portfolio Pty Ltd";
 }

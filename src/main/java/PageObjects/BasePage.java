@@ -23,6 +23,10 @@ public class BasePage {
     protected void waitForElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    protected void waitForElementToBePresent(WebElement element){
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("verification-screening-modal")));
+    }
     public void clickElement(WebElement element){
         waitForElementToBeVisible(element);
         clickElement(element);

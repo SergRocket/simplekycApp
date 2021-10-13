@@ -14,5 +14,6 @@ public class LoginOut extends BaseTest {
         WorklistsPage worklistsPage = loginPage.login(AppConfig.validPassword, AppConfig.validUsername);
         worklistsPage.logout();
         Assert.assertTrue(loginPage.afterLoginPageisOpen());
+
         }
 }
